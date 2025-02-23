@@ -1,0 +1,194 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-dark text-white font-poppins;
+    background: linear-gradient(to bottom right, #0F1419, #1A1A1A);
+  }
+}
+
+@layer components {
+  .glass {
+    @apply bg-white/10 backdrop-blur-lg border border-white/20 shadow-xl;
+  }
+  
+  .neon-text {
+    @apply font-orbitron text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-pink-500;
+    text-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+  }
+
+  .neon-instruction {
+    @apply font-orbitron text-lg md:text-xl text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-pink-400;
+    text-shadow: 0 0 15px rgba(0, 212, 255, 0.4);
+    animation: neonPulse 2s ease-in-out infinite;
+  }
+
+  .nav-link {
+    @apply relative px-4 py-2 text-white/80 hover:text-white transition-colors;
+  }
+
+  .nav-link::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-cyan-400 to-pink-500 transition-all duration-300;
+  }
+
+  .nav-link:hover::after {
+    @apply w-full;
+  }
+
+  .gallery-card {
+    @apply glass p-4 rounded-lg transform transition-all duration-300 hover:scale-105 hover:shadow-2xl;
+  }
+}
+
+@keyframes neonPulse {
+  0%, 100% {
+    opacity: 1;
+    text-shadow: 0 0 15px rgba(0, 212, 255, 0.4);
+  }
+  50% {
+    opacity: 0.8;
+    text-shadow: 0 0 25px rgba(0, 212, 255, 0.6);
+  }
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 0%;
+  }
+  25% {
+    background-position: 100% 0%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  75% {
+    background-position: 0% 100%;
+  }
+  100% {
+    background-position: 0% 0%;
+  }
+}
+
+.animate-gradient-x {
+  animation: gradient 20s ease infinite;
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+}
+
+.hero-carousel {
+  height: calc(100vh - 5rem);
+}
+
+.modal-overlay {
+  backdrop-filter: blur(8px);
+}
+
+/* Image zoom effect */
+.image-zoom {
+  @apply transition-all duration-700 ease-in-out transform cursor-pointer;
+  will-change: transform;
+}
+
+.image-zoom:hover {
+  @apply scale-125 z-50;
+}
+
+/* Full screen image modal */
+.image-modal {
+  @apply fixed inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-lg;
+}
+
+.image-modal img {
+  @apply max-h-[90vh] max-w-[90vw] object-contain;
+  will-change: transform;
+}
+
+/* Video hover effect */
+.video-zoom {
+  @apply transition-all duration-700 ease-in-out transform hover:shadow-[0_0_30px_rgba(0,212,255,0.3)];
+  will-change: transform;
+}
+
+.video-zoom:hover {
+  @apply scale-[1.02] z-30;
+}
+
+.video-zoom video {
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+}
+
+/* Slideshow controls */
+.slideshow-controls {
+  @apply fixed bottom-4 left-1/2 transform -translate-x-1/2 flex items-center gap-4 z-50;
+}
+
+.slideshow-button {
+  @apply p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors text-white/80 hover:text-white;
+}
+
+/* Navigation arrows */
+.nav-arrow {
+  @apply absolute top-1/2 transform -translate-y-1/2 p-3 rounded-full bg-white/10 hover:bg-white/20 transition-all duration-300 text-white/80 hover:text-white;
+  backdrop-filter: blur(4px);
+}
+
+.nav-arrow:disabled {
+  @apply opacity-50 cursor-not-allowed;
+}
+
+/* Image counter */
+.image-counter {
+  @apply fixed bottom-4 left-1/2 transform -translate-x-1/2 text-white/60 text-sm;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Border gradient for profile image */
+.border-gradient {
+  position: relative;
+  background: linear-gradient(to right, #00D4FF, #FF00E5);
+  padding: 2px;
+  border-radius: 9999px;
+}
+
+.border-gradient::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 9999px;
+  padding: 3px;
+  background: linear-gradient(to right, #00D4FF, #FF00E5);
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  animation: borderRotate 4s linear infinite;
+}
+
+@keyframes borderRotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Profile image hover effect */
+.profile-image-hover {
+  transition: all 0.3s ease-in-out;
+}
+
+.profile-image-hover:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
+}
